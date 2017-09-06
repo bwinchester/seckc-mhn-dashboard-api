@@ -1,0 +1,10 @@
+{
+  "generator-flask-api": {
+    "appName": "seckc_mhn_api",
+    "database": "none",
+    "databaseMapper": "none",
+    "versioningScheme": "none",
+    "currentVersion": "",
+    "urlPrefix": "/api"
+  }
+}
