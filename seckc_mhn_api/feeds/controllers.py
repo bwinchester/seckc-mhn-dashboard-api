@@ -37,5 +37,5 @@ def see_user_maybe_join():
         join_room("activeUsers")
     else:
         if useragent.startswith("python-requests") == False:
-            print "anon user joined" + type(useragent)
+            print "anon user joined"
             join_room("anonUsers")

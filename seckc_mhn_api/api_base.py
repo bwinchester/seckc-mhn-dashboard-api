@@ -12,7 +12,6 @@ from flask_cors import CORS
 # print(SETTINGS)
 
 APP = FlaskAPI(__name__)
-CORS(APP)
 SOCKET_IO_APP = SocketIO(APP)
 
 NOTES = {
