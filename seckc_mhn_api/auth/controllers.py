@@ -43,7 +43,6 @@ def user_status(f):
                 return f(*args, **kwargs)
             except ValueError:
                 request.user_active = False
-
         # If no Cookie header, return active false
         request.user_active = False
         return f(*args, **kwargs)
