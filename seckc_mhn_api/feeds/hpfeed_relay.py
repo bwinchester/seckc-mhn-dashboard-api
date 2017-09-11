@@ -21,7 +21,7 @@ def main():
     hpc = hpfeeds.new(HOST, PORT, IDENT, SECRET)
     print >>sys.stderr, 'connected to', hpc.brokername
 
-    myconnection = SocketIO('localhost', 5000, LoggingNamespace)
+    myconnection = SocketIO('127.0.0.1', 5000, LoggingNamespace)
     def on_message(ident, channel, payload):
         try:
             dec = json.loads(str(payload))
