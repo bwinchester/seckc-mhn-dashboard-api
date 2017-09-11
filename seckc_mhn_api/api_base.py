@@ -29,6 +29,7 @@ def note_repr(key):
 #import modules here
 from seckc_mhn_api.auth.controllers import AUTH_MODULE, user_status
 from seckc_mhn_api.geocode.controllers import GEOCODE_MODULE
+from seckc_mhn_api.stats.controllers import STATS_MODULE
 
 import seckc_mhn_api.feeds.hpfeed_relay
 seckc_mhn_api.feeds.hpfeed_relay.start()
@@ -37,6 +38,7 @@ import seckc_mhn_api.feeds.controllers
 # Register blueprint(s)
 APP.register_blueprint(AUTH_MODULE)
 APP.register_blueprint(GEOCODE_MODULE)
+APP.register_blueprint(STATS_MODULE)
 
 @APP.after_request
 def manage_security_headers(response):

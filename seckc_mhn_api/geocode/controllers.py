@@ -8,8 +8,9 @@ from seckc_mhn_api.config import SETTINGS
 import geoip2.database
 
 script_dir = os.path.dirname(__file__)
-abs_file_path = os.path.join(script_dir, "/Users/brandon.winchester/src/seckc-mhn-api/geodatabase/GeoLite2-City.mmdb")
-print abs_file_path 
+abs_file_path = os.path.dirname(os.path.realpath(__file__))
+abs_file_path = os.path.join(abs_file_path, "../../geodatabase/GeoLite2-City.mmdb")
+
 # Define the blueprint: 'geocode', set its url prefix: app.url/geocode
 GEOCODE_MODULE = Blueprint('geocode', __name__, url_prefix='/geocode')
 

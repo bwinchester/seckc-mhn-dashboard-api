@@ -17,8 +17,6 @@ CHANNELS = SETTINGS["hpfeeds"]["channels"]
 IDENT = SETTINGS["hpfeeds"]["user"]
 SECRET = SETTINGS["hpfeeds"]["token"]
 
-print HOST, PORT, CHANNELS, IDENT, SECRET
-
 def main():
     hpc = hpfeeds.new(HOST, PORT, IDENT, SECRET)
     print >>sys.stderr, 'connected to', hpc.brokername
