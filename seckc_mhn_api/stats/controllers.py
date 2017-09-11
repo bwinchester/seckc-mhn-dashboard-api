@@ -26,12 +26,12 @@ AUTH_PAYLOAD = {
 @STATS_MODULE.route("/", methods=['GET'])
 @user_status
 def getstats():
-    if 'date' in request.query and 'channel' in request.query:
-        query = {'date': request.query.date, 'channel': request.query.channel}
-    elif 'date' in request.query:
-        query = {'date': request.query.date}
-    elif 'channel' in request.query:
-        query = {'channel': request.query.channel}
+    if 'date' in request.args and 'channel' in request.args:
+        query = {'date': request.args.date, 'channel': request.args.channel}
+    elif 'date' in request.args:
+        query = {'date': request.args.date}
+    elif 'channel' in request.args:
+        query = {'channel': request.args.channel}
     else:
         abort(404, 'Bad Request')
 
