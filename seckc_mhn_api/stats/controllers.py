@@ -26,6 +26,8 @@ AUTH_PAYLOAD = {
 @STATS_MODULE.route("/", methods=['GET'])
 @user_status
 def getstats():
+    if request.user_active is False:
+        abort(401, 'Authenticate')
     if request.args.get('date', default=None, type=None) is not None and request.args.get('channel', default=None, type=None) is not None:
         query = {'date': request.args.get('date', default=None, type=None), 'channel': request.args.get('channel', default=None, type=None)}
     elif request.args.get('date', default=None, type=None) is not None:
