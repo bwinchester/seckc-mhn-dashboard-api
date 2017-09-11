@@ -14,9 +14,8 @@ import certifi
 STATS_MODULE = Blueprint('stats', __name__, url_prefix='/stats')
 
 database = "mnemosyne"
-dbconn = MongoClient(auto_start_request=False)
-conn = MongoClient(auto_start_request=False)
-db = conn[database]
+dbconn = MongoClient()
+db = dbconn[database]
 
 MNEMOSYNE_COOKIE = None
 AUTH_PAYLOAD = {
