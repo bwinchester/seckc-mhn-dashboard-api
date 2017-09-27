@@ -1,4 +1,4 @@
-'''auth_module
+'''stats_module
 '''
 import os
 import json
@@ -23,11 +23,8 @@ AUTH_PAYLOAD = {
     "password": SETTINGS["mnemosyne"]["password"]
 }
 
-@STATS_MODULE.route("/", methods=['GET'])
-@user_status
+@STATS_MODULE.route("/attacks", methods=['GET'])
 def getstats():
-    if request.user_active is False:
-        abort(401, 'Authenticate')
     if request.args.get('date', default=None, type=None) is not None and request.args.get('channel', default=None, type=None) is not None:
         query = {'date': request.args.get('date', default=None, type=None), 'channel': request.args.get('channel', default=None, type=None)}
     elif request.args.get('date', default=None, type=None) is not None:
@@ -44,29 +41,10 @@ def getstats():
 
     return results
 
-#     if request.user_active == False:
-#         print request.user_active
-#         abort(401)
-#     else:
-#         logoutMnemo()
-#         jar = setMnemosyneCookie()
-#         rheaders = {'Connection': 'close', 'Accept': 'application/json'}
-#         date = datetime.date.today()
-#         print date.strftime("%Y%m%d")
-#         print jar["beaker.session.id"]
-#         rheaders["Cookie"] = "beaker.session.id=" + jar["beaker.session.id"]
-#         print rheaders
-#         auth_request = requests.get("https://mhn.h-i-r.net:8181/api/v1/hpfeeds/stats?date=" + date.strftime("%Y%m%d"), headers=rheaders, verify=False)
-#         return json.loads(auth_request.text)
-
-# def setMnemosyneCookie():
-#     global MNEMOSYNE_COOKIE
-#     rheaders = {'Connection': 'close', 'Accept': 'application/json'}
-#     auth_request = requests.post("https://mhn.h-i-r.net:8181/login", data=AUTH_PAYLOAD, headers=rheaders, verify=False)
-#     print auth_request
-#     MNEMOSYNE_COOKIE = auth_request.cookies
-#     return auth_request.cookies
-
-# def logoutMnemo():
-#     rheaders = {'Connection': 'close', 'Accept': 'application/json'}
-#     auth_request = requests.get("https://mhn.h-i-r.net:8181/logout", headers=rheaders, verify=False)
+@STATS_MODULE.route("/attackers", methods=['GET'])
+def getattackers():
+    attackerurl =  "https://mhn.h-i-r.net/api/top_attackers/?hours_ago=24&api_key=" + SETTINGS["mhn"]["apikey"]
+    top_attacker_request = requests.get(attackerurl, verify=certifi.where())
+    if top_attacker_request.status_code == 200:
+        return top_attacker_request.json()
+    return {}

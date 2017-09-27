@@ -21,3 +21,8 @@ def geocode(ip):
     #print reader.city("136.32.181.16")
     response = reader.city(ip)
     return response.raw
+
+def geocodeinternal(ip):
+    #print reader.city("136.32.181.16")
+    response = reader.city(ip)
+    return response.raw
