@@ -48,3 +48,11 @@ def getattackers():
     if top_attacker_request.status_code == 200:
         return top_attacker_request.json()
     return {}
+
+@STATS_MODULE.route("/attacker/<ip>", methods=['GET'])
+def getattackerstats(ip):
+    attackerstaturl =  "https://mhn.h-i-r.net/api/attacker_stats/" + ip + "/?api_key=" + SETTINGS["mhn"]["apikey"]
+    attacker_request = requests.get(attackerstaturl, verify=certifi.where())
+    if attacker_request.status_code == 200:
+        return attacker_request.json()
+    return {}
